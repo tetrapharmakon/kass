@@ -1,0 +1,78 @@
+---
+layout: null
+# Add entries here; see README.md for the fields.
+meetings:
+  - title: "TBA"
+    speaker: "TBA"
+    affiliation: "Tallinn University of Technology"
+    date: "2026-10-09"
+    time: "13:00"
+    venue: "ICT building, room TBA"
+    abstract: |
+      TBA
+    slides: "assets/slides.pdf"
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="KASS is the joint Tallinn-Tartu category theory seminar. Programme, talks, and meeting details."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="KASS - Tallinn-Tartu Category Theory Seminar" />
+    <meta property="og:description" content="Kategooriateooria Arutelude ja Seminaride Sari." />
+    {% if site.url and site.url != empty %}
+    <meta property="og:image" content="{{ page.dir | append: 'assets/kass-logo.png' | absolute_url | escape }}" />
+    <meta property="og:url" content="{{ page.url | absolute_url | escape }}" />
+    <link rel="canonical" href="{{ page.url | absolute_url | escape }}" />
+    {% endif %}
+    <title>KASS - Tallinn-Tartu Category Theory Seminar</title>
+    <link rel="icon" href="assets/kass-mark.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>KASS</h1>
+          <p class="subtitle">Tallinn&ndash;Tartu category theory seminar</p>
+          <p class="expansion" lang="et">Kategooriateooria Arutelude ja Seminaride Sari</p>
+        </div>
+        <img src="assets/kass-mark.png" alt="A cat face formed from a commutative square" width="88" height="88" />
+      </header>
+
+      <p>
+        KASS is a joint, semi-regular seminar for the category theory communities
+        of Tallinn and Tartu, bringing together mathematics, computer science,
+        logic, and related fields.
+      </p>
+      <p>
+        Meetings take place in Tallinn and Tartu and combine research talks with
+        informal discussion, including work in progress. Researchers, students,
+        and visitors are welcome.
+      </p>
+
+      <section id="programme" aria-labelledby="programme-title">
+        <h2 id="programme-title">Programme</h2>
+        {% assign meetings = page.meetings | sort: 'date' | reverse %}
+        {% for meeting in meetings %}
+        <article class="meeting">
+          <h3>{{ meeting.title | escape }}</h3>
+          <p>{{ meeting.speaker | escape }}{% if meeting.affiliation %} ({{ meeting.affiliation | escape }}){% endif %}</p>
+          <p class="meeting-meta">
+            <time datetime="{{ meeting.date | date: '%Y-%m-%d' }}">{{ meeting.date | date: '%-d %B %Y' }}</time>{% if meeting.time %}, {{ meeting.time | escape }} (Estonian local time){% endif %}
+            {% if meeting.venue %}<br />{{ meeting.venue | escape }}{% endif %}
+          </p>
+          {% if meeting.abstract %}{{ meeting.abstract | markdownify }}{% endif %}
+          {% if meeting.slides %}<p><a href="{{ meeting.slides | escape }}">Slides</a></p>{% endif %}
+        </article>
+        {% else %}
+        <p>Dates, speakers, and meeting details will be announced here.</p>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>

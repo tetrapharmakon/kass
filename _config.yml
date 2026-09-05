@@ -1,0 +1,8 @@
+exclude:
+  - README.md
+  - flake.nix
+  - flake.lock
+  - Gemfile
+  - Gemfile.lock
+  - gemset.nix
+  - .gitignore
