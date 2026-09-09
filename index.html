@@ -1,16 +1,5 @@
 ---
 layout: null
-# Add entries here; see README.md for the fields.
-meetings:
-  - title: "TBA"
-    speaker: "TBA"
-    affiliation: "Tallinn University of Technology"
-    date: "2026-10-09"
-    time: "13:00"
-    venue: "ICT building, room TBA"
-    abstract: |
-      TBA
-    slides: "assets/slides.pdf"
 ---
 <!doctype html>
 <html lang="en">
@@ -38,7 +27,7 @@ meetings:
       <header>
         <div>
           <h1>KASS</h1>
-          <p class="subtitle">Tallinn&ndash;Tartu category theory seminar</p>
+          <p class="subtitle">Tallinn&ndash;Tartu series of seminars and discussions on category theory</p>
           <p class="expansion" lang="et">Kategooriateooria Arutelude ja Seminaride Sari</p>
         </div>
         <img src="assets/kass-mark.png" alt="A cat face formed from a commutative square" width="88" height="88" />
@@ -57,8 +46,22 @@ meetings:
 
       <section id="programme" aria-labelledby="programme-title">
         <h2 id="programme-title">Programme</h2>
-        {% assign meetings = page.meetings | sort: 'date' | reverse %}
-        {% for meeting in meetings %}
+        {%- comment -%}
+        Liquid's sort filter takes a single key, so order by a composite
+        "date time index" string and use the trailing index to fetch the entry.
+        {%- endcomment -%}
+        {% assign order = '' | split: '' %}
+        {% for entry in site.data.meetings %}
+          {% assign at = entry.time | default: '00:00' %}
+          {% if at.size == 4 %}{% assign at = '0' | append: at %}{% endif %}
+          {% capture key %}{{ entry.date | date: '%Y-%m-%d' }} {{ at }} {{ forloop.index0 }}{% endcapture %}
+          {% assign key_item = key | split: '~' %}
+          {% assign order = order | concat: key_item %}
+        {% endfor %}
+        {% assign order = order | sort %}
+        {% for key in order %}
+        {% assign index = key | split: ' ' | last | times: 1 %}
+        {% assign meeting = site.data.meetings[index] %}
         <article class="meeting">
           <h3>{{ meeting.title | escape }}</h3>
           <p>{{ meeting.speaker | escape }}{% if meeting.affiliation %} ({{ meeting.affiliation | escape }}){% endif %}</p>

@@ -53,7 +53,7 @@ section { margin-top: 36px; }
 
 .meeting { margin-top: 24px; }
 .meeting + .meeting { padding-top: 24px; border-top: 1px solid var(--line); }
-.meeting-meta { color: var(--muted); font-size: 0.95rem; }
+.meeting-meta { color: var(--ink); font-size: 1.05rem; }
 
 a { color: var(--blue); text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
