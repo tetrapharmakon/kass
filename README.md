@@ -1,18 +1,19 @@
 # KASS
 
 A small Jekyll page for the joint Tallinn-Tartu category theory seminar.
-Meeting data lives in `_data/meetings.yml`. The template is `index.html` and the
-presentation is `styles.css`. There are no parent layouts, JavaScript, or custom
-plugins.
+Meeting data lives in `_data/meetings.yml`, and the recurring institution and
+building names it refers to live in `_data/places.yml`. The template is `index.html`
+and the presentation is `styles.css`. There are no parent layouts, JavaScript, or
+custom plugins.
 
 ## Use in Another Project
 
 Place `index.html`, `styles.css`, and `assets/` anywhere in another Jekyll
-project's source directory, and merge `_data/meetings.yml` into that project's
-top-level `_data/` directory: Jekyll reads data files only from the site root, so
-this one file cannot travel inside the folder. The folder itself can be renamed.
-Its HTML document does not inherit the host's layout, and local asset links are
-folder-relative.
+project's source directory, and merge `_data/meetings.yml` and `_data/places.yml`
+into that project's top-level `_data/` directory: Jekyll reads data files only from
+the site root, so those two files cannot travel inside the folder. The folder itself
+can be renamed. Its HTML document does not inherit the host's layout, and local asset
+links are folder-relative.
 
 If the host site already has a `_data/meetings.yml`, rename this one and update the
 `site.data.meetings` reference in `index.html` to match.
@@ -48,10 +49,11 @@ and date are required; all other fields are optional:
 ```yaml
 - title: "Talk title"
   speaker: "Speaker name"
-  affiliation: "University or institute"
+  affiliation: taltech
   date: "2026-10-15"
   time: "14:00"
-  venue: "Venue, room, city"
+  venue: ict
+  room: "314"
   abstract: |
     Abstract or a short description. **Markdown** is supported here.
   slides: "assets/filename.pdf"
@@ -73,3 +75,26 @@ Put slides in this folder's `assets/` directory and use a relative path such as
 `/` so the folder remains portable. Edit the introduction or contact
 information directly in `index.html`; routine meeting updates touch only the data
 file.
+
+## Institutions and Venues
+
+`affiliation` and `venue` are short keys, defined once in `_data/places.yml`:
+
+```yaml
+institutions:
+  taltech: "Tallinn University of Technology"
+  tartu: "University of Tartu"
+
+buildings:
+  ict: "ICT building"
+  delta: "Delta building"
+```
+
+Add a key there to introduce a new institution or building, and edit the text there
+to reword every meeting that uses it at once. `room` is a separate per-meeting field,
+appended as `, room 314`; omit it and only the building is shown.
+
+Any value that is not a key is printed as written, so a one-off venue can still be
+given literally as `venue: "A café in Tartu"`. A mistyped key is printed as written
+too, which is how a typo shows up: the page reads `nosuchkey` rather than failing
+the build.

@@ -1,37 +1,42 @@
 # Seminar programme. Add entries here; see README.md for the fields.
+# affiliation and venue are short keys defined in _data/places.yml.
 - title: "TBA"
   speaker: "TBA"
-  affiliation: "Tallinn University of Technology"
+  affiliation: taltech
   date: "2026-10-09"
   time: "13:00"
-  venue: "ICT building, room TBA"
+  venue: ict
+  room: "TBA"
   abstract: |
     TBA
   slides: "assets/slides.pdf"
 - title: "TBA"
   speaker: "TBA"
-  affiliation: "Tallinn University of Technology"
+  affiliation: taltech
   date: "2026-10-09"
   time: "10:00"
-  venue: "ICT building, room TBA"
+  venue: ict
+  room: "TBA"
   abstract: |
     TBA
   slides: "assets/slides.pdf"
 - title: "TBA"
   speaker: "TBA"
-  affiliation: "Tallinn University of Technology"
+  affiliation: taltech
   date: "2026-10-09"
   time: "15:00"
-  venue: "ICT building, room TBA"
+  venue: ict
+  room: "TBA"
   abstract: |
     TBA
   slides: "assets/slides.pdf"
 - title: "TBA"
   speaker: "TBA"
-  affiliation: "University of Tartu"
+  affiliation: tartu
   date: "2026-10-09"
   time: "14:00"
-  venue: "ICT building, room TBA"
+  venue: ict
+  room: "TBA"
   abstract: |
     TBA
   slides: "assets/slides.pdf"

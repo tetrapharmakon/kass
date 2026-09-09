@@ -1,0 +1,10 @@
+# Fixed wording referenced by _data/meetings.yml.
+# A meeting names one of these short keys; the full text is written here once.
+
+institutions:
+  taltech: "Tallinn University of Technology"
+  tartu: "University of Tartu"
+
+buildings:
+  ict: "ICT building"
+  delta: "Delta building"

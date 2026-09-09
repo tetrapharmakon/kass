@@ -62,12 +62,18 @@ layout: null
         {% for key in order %}
         {% assign index = key | split: ' ' | last | times: 1 %}
         {% assign meeting = site.data.meetings[index] %}
+        {%- comment -%}
+        affiliation and venue may be a short key from _data/places.yml or, failing
+        that, literal text.
+        {%- endcomment -%}
+        {% assign affiliation = site.data.places.institutions[meeting.affiliation] | default: meeting.affiliation %}
+        {% assign building = site.data.places.buildings[meeting.venue] | default: meeting.venue %}
         <article class="meeting">
           <h3>{{ meeting.title | escape }}</h3>
-          <p class="speaker">{{ meeting.speaker | escape }}{% if meeting.affiliation %} ({{ meeting.affiliation | escape }}){% endif %}</p>
+          <p class="speaker">{{ meeting.speaker | escape }}{% if affiliation %} ({{ affiliation | escape }}){% endif %}</p>
           <p class="meeting-meta">
             <time datetime="{{ meeting.date | date: '%Y-%m-%d' }}">{{ meeting.date | date: '%-d %B %Y' }}</time>{% if meeting.time %}, {{ meeting.time | escape }} (Estonian local time){% endif %}
-            {% if meeting.venue %}<br />{{ meeting.venue | escape }}{% endif %}
+            {% if building %}<br />{{ building | escape }}{% if meeting.room %}, room {{ meeting.room | escape }}{% endif %}{% endif %}
           </p>
           {% if meeting.abstract %}{{ meeting.abstract | markdownify }}{% endif %}
           {% if meeting.slides %}<p><a href="{{ meeting.slides | escape }}">Slides</a></p>{% endif %}
