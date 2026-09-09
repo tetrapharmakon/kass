@@ -64,7 +64,7 @@ layout: null
         {% assign meeting = site.data.meetings[index] %}
         <article class="meeting">
           <h3>{{ meeting.title | escape }}</h3>
-          <p>{{ meeting.speaker | escape }}{% if meeting.affiliation %} ({{ meeting.affiliation | escape }}){% endif %}</p>
+          <p class="speaker">{{ meeting.speaker | escape }}{% if meeting.affiliation %} ({{ meeting.affiliation | escape }}){% endif %}</p>
           <p class="meeting-meta">
             <time datetime="{{ meeting.date | date: '%Y-%m-%d' }}">{{ meeting.date | date: '%-d %B %Y' }}</time>{% if meeting.time %}, {{ meeting.time | escape }} (Estonian local time){% endif %}
             {% if meeting.venue %}<br />{{ meeting.venue | escape }}{% endif %}
