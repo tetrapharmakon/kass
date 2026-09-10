@@ -1,42 +1,42 @@
 # Seminar programme. Add entries here; see README.md for the fields.
 # affiliation and venue are short keys defined in _data/places.yml.
-- title: "TBA"
-  speaker: "TBA"
-  affiliation: taltech
+- title: "Representability for Generalized Multicategories"
+  speaker: "Matt Earnshaw"
+  affiliation: tartu
   date: "2026-10-09"
-  time: "13:00"
+  time: "13:30"
+  duration: "50+10 min"
   venue: ict
-  room: "TBA"
+  room: "218"
   abstract: |
     TBA
-  slides: "assets/slides.pdf"
-- title: "TBA"
-  speaker: "TBA"
-  affiliation: taltech
-  date: "2026-10-09"
-  time: "10:00"
-  venue: ict
-  room: "TBA"
-  abstract: |
-    TBA
-  slides: "assets/slides.pdf"
-- title: "TBA"
-  speaker: "TBA"
+- title: "Semi-quantitative semantics"
+  speaker: "Vincent Moreau"
   affiliation: taltech
   date: "2026-10-09"
   time: "15:00"
+  duration: "20+10 min"
   venue: ict
-  room: "TBA"
+  room: "218"
   abstract: |
     TBA
-  slides: "assets/slides.pdf"
-- title: "TBA"
-  speaker: "TBA"
+- title: "Override and Update in Restriction Categories"
+  speaker: "Chad Nester"
   affiliation: tartu
   date: "2026-10-09"
-  time: "14:00"
+  time: "15:30"
+  duration: "20+10 min"
   venue: ict
-  room: "TBA"
+  room: "218"
+  abstract: |
+    There are not so many interesting binary operations on partial functions. Among them are the override (aka left preferential union) and update operators. While interesting, these operators are somewhat obscure, and haven't been studied very much. In this talk I will introduce the override and update operators, and discuss my [recent work](https://arxiv.org/pdf/2609.03472) with JS Lemay, in which we study these operators from the perspective of restriction categories.
+- title: "TBA"
+  speaker: "Paweł Sobociński"
+  affiliation: taltech
+  date: "2026-10-09"
+  time: "16:30"
+  duration: "20+10 min"
+  venue: ict
+  room: "218"
   abstract: |
     TBA
-  slides: "assets/slides.pdf"

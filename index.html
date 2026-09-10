@@ -70,6 +70,7 @@ layout: null
         {% assign building = site.data.places.buildings[meeting.venue] | default: meeting.venue %}
         <article class="meeting">
           <h3>{{ meeting.title | escape }}</h3>
+          {% if meeting.duration %}<span class="badge">{{ meeting.duration | escape }}</span>{% endif %}
           <p class="speaker">{{ meeting.speaker | escape }}{% if affiliation %} ({{ affiliation | escape }}){% endif %}</p>
           <p class="meeting-meta">
             <time datetime="{{ meeting.date | date: '%Y-%m-%d' }}">{{ meeting.date | date: '%-d %B %Y' }}</time>{% if meeting.time %}, {{ meeting.time | escape }} (Estonian local time){% endif %}
