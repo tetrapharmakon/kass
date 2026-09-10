@@ -9,7 +9,9 @@
   venue: ict
   room: "218"
   abstract: |
-    TBA
+    A multicategory has morphisms whose domains are lists of objects. A generalized multicategory has morphisms whose domains have a shape specified by a monad $T$. Many structures in category theory can be seen as $T$-multicategories for an appropriate $T$. Representability concerns the equivalence between structure defined by universal property, and structure defined coherently. Classically, this is Hermida's equivalence between representable multicategories and monoidal categories. The theory of representability for generalized multicategories allow us to capture many results of this general shape.
+
+    I will give a gentle introduction to generalized multicategories in the sense of Cruttwell and Shulman, and to their representability. This includes new results obtained in work-in-progress with Nathanael Arkor, which seeks to bring into existence the long <<in preparation>> [CS10b].
 - title: "Semi-quantitative semantics"
   speaker: "Vincent Moreau"
   affiliation: taltech
