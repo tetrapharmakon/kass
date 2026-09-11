@@ -21,7 +21,7 @@
   venue: ict
   room: "218"
   abstract: |
-    TBA
+    In this presentation, I present a new model of linear logic where resources are counted “up to 2”. Quite remarkably, this yields a cartesian closed category that is both FinSet-enriched and not well-pointed. This model exhibits a bounded version of quantitative tools of an infinite nature, such as the Taylor expansion of programs, that we aim to apply to higher-order automata theory. It is the first development of this new research programme that we call semi-quantitative semantics. This is joint work with Tito Nguyễn
 - title: "Override and Update in Restriction Categories"
   speaker: "Chad Nester"
   affiliation: tartu
