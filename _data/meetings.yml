@@ -32,7 +32,7 @@
   room: "218"
   abstract: |
     There are not so many interesting binary operations on partial functions. Among them are the override (aka left preferential union) and update operators. While interesting, these operators are somewhat obscure, and haven't been studied very much. In this talk I will introduce the override and update operators, and discuss my [recent work](https://arxiv.org/pdf/2609.03472) with JS Lemay, in which we study these operators from the perspective of restriction categories.
-- title: "TBA"
+- title: "Loom - a prototype resource theory editor"
   speaker: "Paweł Sobociński"
   affiliation: taltech
   date: "2026-10-09"
@@ -41,4 +41,4 @@
   venue: ict
   room: "218"
   abstract: |
-    TBA
+    For the ARIA project I promised to work on “coarse-graining string diagrams” -- i.e. developing principled ways of avoiding the spaghettisation of diagrams as they get large. Some existing techniques for this in the literature include Melliès’s functor boxes and Lobski’s layered theories. In the summer I decided that the most fun way to make progress would be to vibe code a prototype and experiment hands-on with the design space. To keep things grounded in a concrete setting, and since I also like cooking, the main application so far is a recipe editor. Recipes combine some nice underlying maths that has been fleshed out in recent work: they are time graded (Di Lavore and Román, Timing via Pinwheel Double Categories), they are naturally premonoidal with cook attention as the “runtime object” (Román, Sobocinski, String Diagrams for Premonoidal Categories) and they are also graded by partial commutative monoids: e.g. Crema di Mascarpone needs (at least) two bowls! (Earnshaw, Nester, Román, Monoidal Categories Graded by Partial Commutative Monoids). This talk will be a demo of the tool, called Loom, together with a discussion about some “coarse-graining design principles” that are emerging from my experiments.
