@@ -5,29 +5,25 @@
   affiliation: tartu
   date: "2026-10-09"
   time: "13:30"
-  duration: "50+10 min"
+  duration: "50 min"
   venue: ict
   room: "218"
   abstract: |
     A multicategory has morphisms whose domains are lists of objects. A generalized multicategory has morphisms whose domains have a shape specified by a monad $T$. Many structures in category theory can be seen as $T$-multicategories for an appropriate $T$. Representability concerns the equivalence between structure defined by universal property, and structure defined coherently. Classically, this is Hermida's equivalence between representable multicategories and monoidal categories. The theory of representability for generalized multicategories allow us to capture many results of this general shape.
 
     I will give a gentle introduction to generalized multicategories in the sense of Cruttwell and Shulman, and to their representability. This includes new results obtained in work-in-progress with Nathanael Arkor, which seeks to bring into existence the long <<in preparation>> [CS10b].
-- title: "Semi-quantitative semantics"
-  speaker: "Vincent Moreau"
-  affiliation: taltech
+- title: "Break"
   date: "2026-10-09"
-  time: "15:00"
-  duration: "20+10 min"
+  time: "14:20"
+  duration: "10 min"
   venue: ict
   room: "218"
-  abstract: |
-    In this presentation, I present a new model of linear logic where resources are counted “up to 2”. Quite remarkably, this yields a cartesian closed category that is both FinSet-enriched and not well-pointed. This model exhibits a bounded version of quantitative tools of an infinite nature, such as the Taylor expansion of programs, that we aim to apply to higher-order automata theory. It is the first development of this new research programme that we call semi-quantitative semantics. This is joint work with Tito Nguyễn
 - title: "Override and Update in Restriction Categories"
   speaker: "Chad Nester"
   affiliation: tartu
   date: "2026-10-09"
-  time: "15:30"
-  duration: "20+10 min"
+  time: "14:30"
+  duration: "20 min"
   venue: ict
   room: "218"
   abstract: |
@@ -36,9 +32,41 @@
   speaker: "Paweł Sobociński"
   affiliation: taltech
   date: "2026-10-09"
-  time: "16:30"
-  duration: "20+10 min"
+  time: "14:50"
+  duration: "20 min"
   venue: ict
   room: "218"
   abstract: |
     For the ARIA project I promised to work on “coarse-graining string diagrams” -- i.e. developing principled ways of avoiding the spaghettisation of diagrams as they get large. Some existing techniques for this in the literature include Melliès’s functor boxes and Lobski’s layered theories. In the summer I decided that the most fun way to make progress would be to vibe code a prototype and experiment hands-on with the design space. To keep things grounded in a concrete setting, and since I also like cooking, the main application so far is a recipe editor. Recipes combine some nice underlying maths that has been fleshed out in recent work: they are time graded (Di Lavore and Román, Timing via Pinwheel Double Categories), they are naturally premonoidal with cook attention as the “runtime object” (Román, Sobocinski, String Diagrams for Premonoidal Categories) and they are also graded by partial commutative monoids: e.g. Crema di Mascarpone needs (at least) two bowls! (Earnshaw, Nester, Román, Monoidal Categories Graded by Partial Commutative Monoids). This talk will be a demo of the tool, called Loom, together with a discussion about some “coarse-graining design principles” that are emerging from my experiments.
+- title: "The shapes of virtual n-uple categories"
+  speaker: "Clémence Chanavat"
+  date: "2026-10-09"
+  time: "15:10"
+  duration: "20 min"
+  venue: ict
+  room: "218"
+  abstract: |
+    Leinster's +-construction takes a monad $T$ and produces a new monad $T^+$ by generalising construction of the free category on a graph.
+    The algebras for the iterated +-construction starting from the unique monad on the point are known as virtual n-uple categories.
+
+    In this talk, I will present a purely combinatorial approach to the iterated +-construction, based on the polyvoxels, the underlying pasting diagrams of virtual n-uple categories.
+    Inspired by Hadzihasanovic's theory of higher-categorical diagrams, I will explain how to encode the polyvoxels as oriented framed posets: graded posets equipped with some extra data to be interpreted as describing how each element sits in $ \mathbb{R}^\infty$.
+    I will then describe the inductive definition of the polyvoxels, some of their key properties, and finally, how to use them to define an algebraic pattern whose Segal object are virtual n-uple categories.
+
+    This talk is based on work in progress with Nathanael Arkor and Wessel de Weijer.
+- title: "Break"
+  date: "2026-10-09"
+  time: "15:30"
+  duration: "30 min"
+  venue: ict
+  room: "218"
+- title: "Unification via the Segal condition internally to the λ-calculus"
+  speaker: "Vincent Moreau"
+  affiliation: taltech
+  date: "2026-10-09"
+  time: "16:00"
+  duration: "50 min"
+  venue: ict
+  room: "218"
+  abstract: |
+    In this talk, I present ongoing work relating unification, simplicial structures, and higher-order regular languages. My starting point is the fact that Higman's order between finite words can naturally be enhanced to a structure of category that internalizes in the simply typed λ-calculus. In turn, it can be decomposed as a cocategory, which we reconstruct in a principled way via the bar construction. Finally, I will show that the associated Segal condition amounts to the existence of a number of colimits in the free cartesian closed category, akin to pushout-product constructions, and that these have a natural interpretation in terms of unification. If time permits, I will talk about directions to extend these internal categorical structures from words to trees with an eye towards approximants and Böhm trees.
