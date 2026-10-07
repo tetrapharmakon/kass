@@ -40,8 +40,9 @@
     For the ARIA project I promised to work on “coarse-graining string diagrams” -- i.e. developing principled ways of avoiding the spaghettisation of diagrams as they get large. Some existing techniques for this in the literature include Melliès’s functor boxes and Lobski’s layered theories. In the summer I decided that the most fun way to make progress would be to vibe code a prototype and experiment hands-on with the design space. To keep things grounded in a concrete setting, and since I also like cooking, the main application so far is a recipe editor. Recipes combine some nice underlying maths that has been fleshed out in recent work: they are time graded (Di Lavore and Román, Timing via Pinwheel Double Categories), they are naturally premonoidal with cook attention as the “runtime object” (Román, Sobocinski, String Diagrams for Premonoidal Categories) and they are also graded by partial commutative monoids: e.g. Crema di Mascarpone needs (at least) two bowls! (Earnshaw, Nester, Román, Monoidal Categories Graded by Partial Commutative Monoids). This talk will be a demo of the tool, called Loom, together with a discussion about some “coarse-graining design principles” that are emerging from my experiments.
 - title: "The shapes of virtual n-uple categories"
   speaker: "Clémence Chanavat"
+  affiliation: taltech
   date: "2026-10-09"
-  time: "15:10"
+  time: "16:30"
   duration: "20 min"
   venue: ict
   room: "218"
@@ -56,17 +57,23 @@
     This talk is based on work in progress with Nathanael Arkor and Wessel de Weijer.
 - title: "Break"
   date: "2026-10-09"
-  time: "15:30"
-  duration: "30 min"
+  time: "15:10"
+  duration: "20 min"
   venue: ict
   room: "218"
 - title: "Unification via the Segal condition internally to the λ-calculus"
   speaker: "Vincent Moreau"
   affiliation: taltech
   date: "2026-10-09"
-  time: "16:00"
+  time: "15:30"
   duration: "50 min"
   venue: ict
   room: "218"
   abstract: |
     In this talk, I present ongoing work relating unification, simplicial structures, and higher-order regular languages. My starting point is the fact that Higman's order between finite words can naturally be enhanced to a structure of category that internalizes in the simply typed λ-calculus. In turn, it can be decomposed as a cocategory, which we reconstruct in a principled way via the bar construction. Finally, I will show that the associated Segal condition amounts to the existence of a number of colimits in the free cartesian closed category, akin to pushout-product constructions, and that these have a natural interpretation in terms of unification. If time permits, I will talk about directions to extend these internal categorical structures from words to trees with an eye towards approximants and Böhm trees.
+- title: "Break"
+  date: "2026-10-09"
+  time: "16:20"
+  duration: "10 min"
+  venue: ict
+  room: "218"
