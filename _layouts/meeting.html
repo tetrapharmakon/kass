@@ -2,8 +2,10 @@
 {% assign latest = meeting_pages | first %}
 {% assign selected_id = page.meeting | default: latest.meeting %}
 {% assign selected = site.data.meetings[selected_id] %}
-{% assign home = page.dir %}
-{% if page.meeting %}{% assign home = page.dir | append: '../' %}{% endif %}
+{% assign home = './' %}
+{% if page.meeting %}{% assign home = '../' %}{% endif %}
+{% assign asset_dir = page.dir %}
+{% if page.meeting %}{% assign asset_dir = page.dir | append: '../' %}{% endif %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,7 +19,7 @@
     <meta property="og:title" content="KASS - Tallinn-Tartu Category Theory Seminar" />
     <meta property="og:description" content="Kategooriateooria arutelude ja seminaride sari." />
     {% if site.url and site.url != empty %}
-    <meta property="og:image" content="{{ home | append: 'assets/kass-logo.png' | absolute_url | escape }}" />
+    <meta property="og:image" content="{{ asset_dir | append: 'assets/kass-logo.png' | absolute_url | escape }}" />
     <meta property="og:url" content="{{ page.url | absolute_url | escape }}" />
     <link rel="canonical" href="{{ page.url | absolute_url | escape }}" />
     {% endif %}
