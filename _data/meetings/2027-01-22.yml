@@ -1,0 +1,27 @@
+date: "2027-01-22"
+institution: tartu
+venue: delta
+room: "1022"
+talks:
+  - title: "On separable functors"
+    speaker: "Valdis Laan"
+    affiliation: tartu
+    abstract: |
+      Separable functors were introduced in 1989 by Nastasescu, Van den Bergh and Van Oystaeyen. Every full and faithful functor is separable and every separable functor is faithful. Later, heavily separable and semiseparable functors have been defined. In our talk, we consider some general properties of separable functors and then speak about separability properties of the restriction of scalars and extension of scalars functors between the categories of firm acts over firm semigroups. 
+  - title: "On the univalence of (∞,ω)-categories"
+    speaker: "Miika Tuominen"
+    affiliation: 
+    abstract: |
+      While developing a model of homotopy-theoretic categories, Rezk identified a completeness condition that sets their theory from that of ordinary categories and ties homotopical and categorical equivalences together. Rezk’s completeness condition was later reinterpreted by Voevodsky as the univalence axiom which is foundational in the type-theoretic approach to category theory. A particularly important characterization of univalence is that it is precisely the condition that makes essentially surjective fully faithful functors invertible. In this talk, we discuss univalence of higher-dimensional categories and the conditions on functors that characterize it.  
+  - title: "Enriched presheaves as graded functors"
+    speaker: "Callum Reader"
+    affiliation: taltech
+    abstract: |
+      The enriched category of presheaves on a V-category, C, for V a complete closed symmetric monoidal category, is exhibited by the functor V-category [C°, V]. In contrast, for a category C enriched in a bicategory W, there is no apparent way to express the W-category of presheaves on C as a functor category.
+
+      We show that, by generalising from categories enriched in a bicategory, to categories graded by a bicategory, the W-category of presheaves may be realised, after all, as a functor category construction. This clarifies the nature of presheaf constructions for categories enriched in bicategories. To get to this result we develop some bicategory-graded category theory which illuminates some surprising relationships, including a mutual generalisation of actegories and Grothendieck fibrations.
+  - title: "TBC"
+    speaker: "Fosco Loregian"
+    affiliation: taltech
+    abstract: |
+      TBC

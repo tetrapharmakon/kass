@@ -1,4 +1,4 @@
-# Fixed wording referenced by _data/meetings.yml.
+# Fixed wording referenced by _data/meetings/*.yml.
 # A meeting names one of these short keys; the full text is written here once.
 
 institutions:
@@ -6,5 +6,5 @@ institutions:
   tartu: "University of Tartu"
 
 buildings:
-  ict: "ICT building"
-  delta: "Delta building"
+  ict: "ICT Building"
+  delta: "Delta Building"

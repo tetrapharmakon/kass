@@ -1,100 +1,90 @@
 # KASS
 
-A small Jekyll page for the joint Tallinn-Tartu category theory seminar.
-Meeting data lives in `_data/meetings.yml`, and the recurring institution and
-building names it refers to live in `_data/places.yml`. The template is `index.html`
-and the presentation is `styles.css`. There are no parent layouts, JavaScript, or
-custom plugins.
+A Jekyll site for the joint Tallinn–Tartu category theory seminar. The front page
+shows the meeting with the latest date, including announced future meetings.
+Earlier meetings appear as links, newest first. Each meeting has a permanent page.
+The plugin `_plugins/meeting_pages.rb` generates pages from meeting YAML files.
+For GitHub Pages, build with GitHub Actions and deploy `_site/`; its default
+Jekyll build does not run custom plugins.
 
-## Use in Another Project
-
-Place `index.html`, `styles.css`, and `assets/` anywhere in another Jekyll
-project's source directory, and merge `_data/meetings.yml` and `_data/places.yml`
-into that project's top-level `_data/` directory: Jekyll reads data files only from
-the site root, so those two files cannot travel inside the folder. The folder itself
-can be renamed. Its HTML document does not inherit the host's layout, and local asset
-links are folder-relative.
-
-If the host site already has a `_data/meetings.yml`, rename this one and update the
-`site.data.meetings` reference in `index.html` to match.
-
-The page uses the host's `url` and `baseurl` for canonical and social-preview URLs.
-If no `url` is configured, those optional metadata links are omitted.
-
-To run it as its own site from inside this folder, using the bundled Nix
-flake (no Jekyll install needed):
+## Build and preview
 
 ```sh
 nix run         # serve at http://localhost:4000/
-nix run .#build # render the site into _site/
+nix run .#build # render into _site/
 ```
 
-With Jekyll installed, `jekyll serve` and `jekyll build` work equally well; no
-configuration file is required to run. For a production build, publish the
-contents of `_site/`.
+With Jekyll installed, `jekyll serve` and `jekyll build` also work. Publish the
+contents of `_site/` to a static host. Source HTML requires Jekyll processing.
 
-For a non-Jekyll project or a plain static host, copy that generated output rather
-than these source files. Liquid must be processed by Jekyll; opening the source
-HTML directly in a browser is not a supported preview.
+## Add a meeting
 
-Committing and pushing this folder to your repository and enabling GitHub Pages
-publishes it through Jekyll, which renders the template with the full
-presentation from `styles.css`.
-
-## Add a Meeting
-
-Add entries to `_data/meetings.yml`, one list item per talk. The title, speaker,
-and date are required; all other fields are optional:
+Create `_data/meetings/YYYY-MM-DD.yml`, using the meeting date as its filename:
 
 ```yaml
-- title: "Talk title"
-  speaker: "Speaker name"
-  affiliation: taltech
-  date: "2026-10-15"
-  time: "14:00"
-  venue: ict
-  room: "314"
-  abstract: |
-    Abstract or a short description. **Markdown** is supported here.
-  slides: "assets/filename.pdf"
+date: "2026-11-20"
+institution: tartu
+venue: delta
+room: "314"
+talks:
+  - title: "Talk title"
+    speaker: "Speaker name"
+    affiliation: tartu
+    time: "14:00"
+    duration: "50 min"
+    abstract: |
+      Abstract or a short description. **Markdown** and $math$ are supported.
+    slides: "assets/filename.pdf"
+  - title: "Break"
+    time: "14:50"
+    duration: "10 min"
 ```
 
-The example date is illustrative; replace it with the confirmed date. Keep dates
-quoted in `YYYY-MM-DD` format and times quoted in `HH:MM` format, using Estonian
-local time.
+The build generates `/meetings/YYYY-MM-DD.html` automatically; no HTML file is
+needed. Keep YAML files for past meetings. The front page and navigation update
+automatically. Use matching ISO dates in filenames and the `date` field, since
+filenames determine meeting order.
 
-Meetings are sorted automatically by date and then by time, earliest first, whatever
-order they are written in. An entry with no `time` sorts to the start of its day. Keep
-past entries as the seminar record; no separate archive or status field is required.
-If several talks share a meeting, add one entry per talk with the same date and venue.
-Omit optional fields until their details are available. When `_data/meetings.yml` is
-empty, the page shows the announcement placeholder automatically.
+`date` and talk titles are required. Other fields are optional. For a meeting
+whose programme is pending, use `talks: []`. Times should be quoted `HH:MM` strings
+in Estonian local time. Talks sort by time regardless of their order in the file;
+a talk without a time sorts first. Breaks can omit the speaker and abstract.
+The optional `institution` and `venue` appear in the programme heading.
+`institution` accepts a key from `_data/places.yml` or literal text.
+The meeting's location and room appear in the heading; programme entries show
+only their time.
 
-Put slides in this folder's `assets/` directory and use a relative path such as
-`assets/filename.pdf`, or supply a full external URL. Avoid paths starting with
-`/` so the folder remains portable. Edit the introduction or contact
-information directly in `index.html`; routine meeting updates touch only the data
-file.
+Put slides in `assets/` and use paths such as `assets/filename.pdf`, relative to
+the site root, or full external URLs. Links work on both the front page and
+permanent meeting pages. Keep the existing October meeting as an example.
 
-## Institutions and Venues
+## Edit the site
 
-`affiliation` and `venue` are short keys, defined once in `_data/places.yml`:
+`_layouts/meeting.html` contains the shared page template and introduction;
+`index.html` selects that layout. Styling lives in `styles.css`. Institution and
+building names are defined in `_data/places.yml`:
 
 ```yaml
 institutions:
   taltech: "Tallinn University of Technology"
   tartu: "University of Tartu"
-
 buildings:
-  ict: "ICT building"
-  delta: "Delta building"
+  ict: "ICT Building"
+  delta: "Delta Building"
 ```
 
-Add a key there to introduce a new institution or building, and edit the text there
-to reword every meeting that uses it at once. `room` is a separate per-meeting field,
-appended as `, room 314`; omit it and only the building is shown.
+`affiliation` and `venue` accept these keys or literal text. Unknown keys are
+printed as written. Edit the shared names once to update every meeting.
 
-Any value that is not a key is printed as written, so a one-off venue can still be
-given literally as `venue: "A café in Tartu"`. A mistyped key is printed as written
-too, which is how a typo shows up: the page reads `nosuchkey` rather than failing
-the build.
+## Use in another Jekyll project
+
+Copy `index.html`, `styles.css`, and `assets/` into the desired source
+folder. Copy `_plugins/meeting_pages.rb` into the host's `_plugins/`.
+Merge `_layouts/meeting.html` into the host's `_layouts/`, and merge
+`_data/meetings/` and `_data/places.yml` into its top-level `_data/`. These Jekyll
+support directories must live at the host site root. Resolve any naming conflicts
+with existing data or layouts before copying.
+
+Asset and navigation links are folder-relative, so the site can also be served
+under a base path. Set the host's `url` and `baseurl` for canonical and social
+preview URLs; optional metadata links are omitted when `url` is unset.
