@@ -2,10 +2,10 @@
 
 A Jekyll site for the joint Tallinn–Tartu category theory seminar. The front page
 shows the meeting with the latest date, including announced future meetings.
-Earlier meetings appear as links, newest first. Each meeting has a permanent page.
-The plugin `_plugins/meeting_pages.rb` generates pages from meeting YAML files.
-For GitHub Pages, build with GitHub Actions and deploy `_site/`; its default
-Jekyll build does not run custom plugins.
+Earlier meetings appear as links, newest first, pointing to dated sections on
+`meetings.html`. The front page and archive read the YAML data directly using
+standard Jekyll/Liquid. No custom plugin, workflow, or Pages setting changes are
+needed; GitHub Pages' default Jekyll build works.
 
 ## Build and preview
 
@@ -40,8 +40,8 @@ talks:
     duration: "10 min"
 ```
 
-The build generates `/meetings/YYYY-MM-DD.html` automatically; no HTML file is
-needed. Keep YAML files for past meetings. The front page and navigation update
+Each meeting gets a link such as `/meetings.html#meeting-2026-11-20`
+automatically; no per-meeting HTML file is needed. Keep YAML files for past meetings. The front page and navigation update
 automatically. Use matching ISO dates in filenames and the `date` field, since
 filenames determine meeting order.
 
@@ -61,7 +61,8 @@ permanent meeting pages. Keep the existing October meeting as an example.
 ## Edit the site
 
 `_layouts/meeting.html` contains the shared page template and introduction;
-`index.html` selects that layout. Styling lives in `styles.css`. Institution and
+`index.html` selects that layout. `_includes/programme.html` renders each
+programme; `meetings.html` selects the archive view. Styling lives in `styles.css`. Institution and
 building names are defined in `_data/places.yml`:
 
 ```yaml
@@ -78,8 +79,8 @@ printed as written. Edit the shared names once to update every meeting.
 
 ## Use in another Jekyll project
 
-Copy `index.html`, `styles.css`, and `assets/` into the desired source
-folder. Copy `_plugins/meeting_pages.rb` into the host's `_plugins/`.
+Copy `index.html`, `meetings.html`, `styles.css`, and `assets/` into the desired
+source folder. Copy `_includes/programme.html` into the host's `_includes/`.
 Merge `_layouts/meeting.html` into the host's `_layouts/`, and merge
 `_data/meetings/` and `_data/places.yml` into its top-level `_data/`. These Jekyll
 support directories must live at the host site root. Resolve any naming conflicts

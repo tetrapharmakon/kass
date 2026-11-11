@@ -1,11 +1,13 @@
-{% assign meeting_pages = site.pages | where: 'layout', 'meeting' | where_exp: 'item', 'item.meeting != nil' | sort: 'meeting' | reverse %}
-{% assign latest = meeting_pages | first %}
-{% assign selected_id = page.meeting | default: latest.meeting %}
+{% assign meeting_ids = '' | split: '' %}
+{% for entry in site.data.meetings %}
+  {% assign id = entry[0] | split: '~' %}
+  {% assign meeting_ids = meeting_ids | concat: id %}
+{% endfor %}
+{% assign meeting_ids = meeting_ids | sort | reverse %}
+{% assign selected_id = meeting_ids | first %}
 {% assign selected = site.data.meetings[selected_id] %}
 {% assign home = './' %}
-{% if page.meeting %}{% assign home = '../' %}{% endif %}
 {% assign asset_dir = page.dir %}
-{% if page.meeting %}{% assign asset_dir = page.dir | append: '../' %}{% endif %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,7 +25,7 @@
     <meta property="og:url" content="{{ page.url | absolute_url | escape }}" />
     <link rel="canonical" href="{{ page.url | absolute_url | escape }}" />
     {% endif %}
-    <title>{% if selected %}{{ selected.date | date: '%-d %B %Y' }} - {% endif %}KASS - Tallinn-Tartu Category Theory Seminar</title>
+    <title>{% if page.archive %}Previous meetings - {% elsif selected %}{{ selected.date | date: '%-d %B %Y' }} - {% endif %}KASS - Tallinn-Tartu Category Theory Seminar</title>
     <link rel="icon" href="{{ home }}assets/kass-mark.png" type="image/png" />
     <link rel="stylesheet" href="{{ home }}styles.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj+VczCZtlzBcjt5ppRcsAmDnRem7ESsYwWwg3m/OaJ2l4x7YBZl9Kxxib" crossorigin="anonymous" />
@@ -52,61 +54,27 @@
         and visitors are welcome. We especially encourage young PhD students to join and present their work.
       </p>
 
-      {% if page.meeting %}<p><a href="{{ home }}">Latest meeting</a></p>{% endif %}
+      {% if page.archive %}
+      <p><a href="{{ home }}">Latest meeting</a></p>
+      {% for item in meeting_ids %}
+        {% assign selected_id = item %}
+        {% assign selected = site.data.meetings[item] %}
+        {% include programme.html %}
+      {% else %}
+      <p>Dates, speakers, and meeting details will be announced here.</p>
+      {% endfor %}
+      {% else %}
+        {% include programme.html %}
+      {% endif %}
 
-      <section id="programme" aria-labelledby="programme-title">
-        {% assign institution = site.data.places.institutions[selected.institution] | default: selected.institution %}
-        {% assign meeting_building = site.data.places.buildings[selected.venue] | default: selected.venue %}
-        <h2 id="programme-title">{% if selected %}{{ selected.date | date: '%-d %B %Y' }}{% if institution or meeting_building %}<br />{% if institution %}{{ institution | escape }}{% endif %}{% if institution and meeting_building %}, {% endif %}{{ meeting_building | escape }}{% endif %}{% if selected.room %}{% if institution or meeting_building %}, {% else %}<br />{% endif %}room {{ selected.room | escape }}{% endif %}{% endif %}</h2>
-        {%- comment -%}
-        Liquid's sort filter takes a single key, so order by a composite
-        "date time index" string and use the trailing index to fetch the entry.
-        {%- endcomment -%}
-        {% assign order = '' | split: '' %}
-        {% for entry in selected.talks %}
-          {% assign at = entry.time | default: '00:00' %}
-          {% if at.size == 4 %}{% assign at = '0' | append: at %}{% endif %}
-          {% capture key %}{{ selected.date | date: '%Y-%m-%d' }} {{ at }} {{ forloop.index0 }}{% endcapture %}
-          {% assign key_item = key | split: '~' %}
-          {% assign order = order | concat: key_item %}
-        {% endfor %}
-        {% assign order = order | sort %}
-        {% for key in order %}
-        {% assign index = key | split: ' ' | last | times: 1 %}
-        {% assign meeting = selected.talks[index] %}
-        {%- comment -%}
-        affiliation may be a short key from _data/places.yml or literal text.
-        {%- endcomment -%}
-        {% assign affiliation = site.data.places.institutions[meeting.affiliation] | default: meeting.affiliation %}
-        <article class="meeting">
-          <div class="talk-heading">
-            <div class="talk-details">
-              <h3>{{ meeting.title | escape }}</h3>
-              {% if meeting.speaker %}<p class="speaker">{{ meeting.speaker | escape }}{% if affiliation %} ({{ affiliation | escape }}){% endif %}</p>{% endif %}
-            </div>
-            {% if meeting.time or meeting.duration %}
-            <div class="talk-schedule">
-              {% if meeting.time %}<time class="talk-time" datetime="{{ selected.date | date: '%Y-%m-%d' }}T{{ meeting.time | escape }}">{{ meeting.time | escape }}</time>{% endif %}
-              {% if meeting.duration %}<span class="badge">{{ meeting.duration | escape }}</span>{% endif %}
-            </div>
-            {% endif %}
-          </div>
-          {% if meeting.abstract %}{{ meeting.abstract | markdownify }}{% endif %}
-          {% if meeting.slides %}<p>{% assign first_char = meeting.slides | slice: 0, 1 %}<a href="{% unless meeting.slides contains '://' or first_char == '/' %}{{ home }}{% endunless %}{{ meeting.slides | escape }}">Slides</a></p>{% endif %}
-        </article>
-        {% else %}
-        <p>Dates, speakers, and meeting details will be announced here.</p>
-        {% endfor %}
-      </section>
-
-      {% if meeting_pages.size > 1 %}
+      {% if meeting_ids.size > 1 %}
       <nav aria-labelledby="meetings-title">
-        <h2 id="meetings-title">{% if page.meeting %}Other meetings{% else %}Previous meetings{% endif %}</h2>
+        <h2 id="meetings-title">{% if page.archive %}Other meetings{% else %}Previous meetings{% endif %}</h2>
         <ul>
-          {% for item in meeting_pages %}
-          {% unless item.meeting == selected_id %}
-          {% assign other = site.data.meetings[item.meeting] %}
-          <li><a href="{{ home }}meetings/{{ item.meeting | escape }}.html">{{ other.date | date: '%-d %B %Y' }}</a></li>
+          {% for item in meeting_ids %}
+          {% unless item == selected_id and page.archive != true %}
+          {% assign other = site.data.meetings[item] %}
+          <li><a href="{{ home }}meetings.html#meeting-{{ item | escape }}">{{ other.date | date: '%-d %B %Y' }}</a></li>
           {% endunless %}
           {% endfor %}
         </ul>
