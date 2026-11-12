@@ -1,7 +1,7 @@
 <section id="meeting-{{ selected_id | escape }}" aria-labelledby="programme-title-{{ selected_id | escape }}">
         {% assign institution = site.data.places.institutions[selected.institution] | default: selected.institution %}
         {% assign meeting_building = site.data.places.buildings[selected.venue] | default: selected.venue %}
-        <h2 id="programme-title-{{ selected_id | escape }}">{% if selected %}{{ selected.date | date: '%-d %B %Y' }}{% if institution or meeting_building %}<br />{% if institution %}{{ institution | escape }}{% endif %}{% if institution and meeting_building %}, {% endif %}{{ meeting_building | escape }}{% endif %}{% if selected.room %}{% if institution or meeting_building %}, {% else %}<br />{% endif %}room {{ selected.room | escape }}{% endif %}{% endif %}</h2>
+        <h2 id="programme-title-{{ selected_id | escape }}">{% if selected %}{{ selected.date | date: '%d/%m/%Y' }}{% if institution %}<br />{{ institution | escape }}{% endif %}{% if meeting_building or selected.room %}<br />{{ meeting_building | escape }}{% if selected.room %}{% if meeting_building %}, {% endif %}room {{ selected.room | escape }}{% endif %}{% endif %}{% endif %}</h2>
         {%- comment -%}
         Liquid's sort filter takes a single key, so order by a composite
         "date time index" string and use the trailing index to fetch the entry.
