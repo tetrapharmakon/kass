@@ -14,6 +14,12 @@ nix run         # serve at http://localhost:4000/
 nix run .#build # render into _site/
 ```
 
+`nix run` stays running to serve the preview and rebuild when files change. Stop
+it with **Ctrl+C**. **Ctrl+Z** suspends it; during dependency setup this can leave
+build locks held and block later runs. If that happens, use `jobs` in the same
+terminal, then `fg %N` (using the job number) and Ctrl+C to cancel each suspended
+`nix run` before retrying.
+
 With Jekyll installed, `jekyll serve` and `jekyll build` also work. Publish the
 contents of `_site/` to a static host. Source HTML requires Jekyll processing.
 
